@@ -1,0 +1,64 @@
+.App {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+}
+
+.App-header {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #222;
+  height: 50px;
+  padding: 20px;
+  color: white;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+}
+
+.App-title {
+  font-size: 1.5em;
+}
+
+.toolbar {
+  display: flex;
+  min-height: 40px;
+  padding-left: 10px;
+  padding-right: 10px;
+  background-color: #c9c9c9;
+  overflow-x: auto;
+  position: fixed;
+  top: 90px;
+  left: 0;
+  right: 0;
+}
+
+.btn {
+  max-height: 40px;
+  width: 40px;
+  color: #222222;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+}
+
+.active {
+  color: cornflowerblue;
+}
+
+.notePage {
+  display: flex;
+  flex: 1;
+  min-height: inherit;
+  background-color: lavender;
+  margin: 140px 10px 10px;
+  padding: 5px;
+  border-radius: 5px;
+}
+
+.notePage > div {
+  width: 100%;
+}
