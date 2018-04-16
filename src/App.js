@@ -24,6 +24,8 @@ const initialValue = Value.fromJSON({
     },
 });
 
+const buttonActive = [];
+
 function MarkHotKey(options) {
     const {type, key} = options;
     // Return our "plugin" object, containing the `onKeyDown` handler.
@@ -33,6 +35,8 @@ function MarkHotKey(options) {
             if (!event.ctrlKey || event.key !== key) return;
             // Prevent the default characters from being inserted.
             event.preventDefault();
+            // Toggle button selected style
+            toggleButtonState(type);
             // Toggle the mark `type`.
             change.toggleMark(type);
             return true;
@@ -40,14 +44,13 @@ function MarkHotKey(options) {
     }
 }
 
-function toggleButtonStyle(event) {
-    const target = event.target;
-
-    if(target.hasAttribute("data-active")) {
-        target.removeAttribute("data-active");
+function toggleButtonState(type) {
+    if(buttonActive.includes(type)) {
+        const index = buttonActive.indexOf(type);
+        buttonActive.splice(index, 1);
     }
     else {
-        target.setAttribute("data-active", "true");
+        buttonActive.push(type);
     }
 }
 
@@ -62,10 +65,10 @@ const plugins = [
     MarkHotKey({ key: '=', type: 'subscript'}),
 ];
 
-
 class App extends Component {
     state = {
         value: initialValue,
+        buttonsActive: buttonActive
     };
 
     onChange = ({ value }) => {
@@ -99,7 +102,7 @@ class App extends Component {
             </div>
         );
     }
-    
+
     renderMark = props => {
         switch (props.mark.type) {
             case 'bold':
@@ -124,12 +127,13 @@ class App extends Component {
             event.preventDefault();
             const {value} = this.state;
             const change = value.change().toggleMark(type);
-            toggleButtonStyle(event);
+            // Toggle button selected style
+            toggleButtonState(type);
             this.onChange(change);
         };
 
         return (
-            <span className={icon} onMouseDown={onMouseDown} data-mark={type}>
+            <span className={icon} onMouseDown={onMouseDown} data-active={this.state.buttonsActive.includes(type)? "true" : "false"}>
             </span>
         )
     };
