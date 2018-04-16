@@ -40,6 +40,17 @@ function MarkHotKey(options) {
     }
 }
 
+function toggleButtonStyle(event) {
+    const target = event.target;
+
+    if(target.hasAttribute("data-active")) {
+        target.removeAttribute("data-active");
+    }
+    else {
+        target.setAttribute("data-active", "true");
+    }
+}
+
 // Create an array of plugins.
 const plugins = [
     MarkHotKey({ key: 'b', type: 'bold' }),
@@ -68,11 +79,13 @@ class App extends Component {
                     <h1 className="App-title">Text formatting using Slate.js</h1>
                 </header>
                 <div className="toolbar">
-                    {this.renderMarkButton('bold', 'fas fa-bold')}
-                    {this.renderMarkButton('italic', 'fas fa-italic')}
-                    {this.renderMarkButton('underlined', 'fas fa-underline')}
-                    {this.renderMarkButton('strikethrough', 'fas fa-strikethrough')}
-                    {this.renderMarkButton('code', 'fas fa-code')}
+                    {this.renderMarkButton('bold', 'btn fas fa-bold')}
+                    {this.renderMarkButton('italic', 'btn fas fa-italic')}
+                    {this.renderMarkButton('underline', 'btn fas fa-underline')}
+                    {this.renderMarkButton('strikethrough', 'btn fas fa-strikethrough')}
+                    {this.renderMarkButton('code', 'btn fas fa-code')}
+                    {this.renderMarkButton('superscript', 'btn fas fa-superscript')}
+                    {this.renderMarkButton('subscript', 'btn fas fa-subscript')}
                 </div>
                 <div className="notePage">
                     <Editor
@@ -107,12 +120,19 @@ class App extends Component {
     };
 
     renderMarkButton = (type, icon) => {
+        const onMouseDown = event => {
+            event.preventDefault();
+            const {value} = this.state;
+            const change = value.change().toggleMark(type);
+            toggleButtonStyle(event);
+            this.onChange(change);
+        };
+
         return (
-            <span className="btn">
-                <i className={icon}></i>
+            <span className={icon} onMouseDown={onMouseDown} data-mark={type}>
             </span>
         )
-    }
+    };
 }
 
 export default App;
