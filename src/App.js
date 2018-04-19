@@ -75,6 +75,11 @@ class App extends Component {
         this.setState({ value })
     };
 
+    hasMark = type => {
+        const { value } = this.state;
+        return value.activeMarks.some(mark => mark.type === type);
+    };
+
     render() {
         return (
             <div className="App">
@@ -132,8 +137,10 @@ class App extends Component {
             this.onChange(change);
         };
 
+        const isActive = this.hasMark(type);
+
         return (
-            <span className={icon} onMouseDown={onMouseDown} data-active={this.state.buttonsActive.includes(type)? "true" : "false"}>
+            <span className={icon} onMouseDown={onMouseDown} data-active={isActive? "true" : "false"}>
             </span>
         )
     };
