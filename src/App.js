@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Editor } from 'slate-react';
 import { Value } from 'slate';
+import SoftBreak from 'slate-soft-break';
 import './App.css';
 
 const initialValue = Value.fromJSON({
@@ -61,8 +62,7 @@ const plugins = [
     MarkHotKey({ key: 'u', type: 'underline' }),
     MarkHotKey({ key: '~', type: 'strikethrough' }),
     MarkHotKey({ key: '`', type: 'code' }),
-    MarkHotKey({ key: '+', type: 'superscript'}),
-    MarkHotKey({ key: '=', type: 'subscript'}),
+    SoftBreak()
 ];
 
 class App extends Component {
@@ -92,8 +92,6 @@ class App extends Component {
                     {this.renderMarkButton('underline', 'btn fas fa-underline')}
                     {this.renderMarkButton('strikethrough', 'btn fas fa-strikethrough')}
                     {this.renderMarkButton('code', 'btn fas fa-code')}
-                    {this.renderMarkButton('superscript', 'btn fas fa-superscript')}
-                    {this.renderMarkButton('subscript', 'btn fas fa-subscript')}
                 </div>
                 <div className="notePage">
                     <Editor
@@ -120,10 +118,6 @@ class App extends Component {
                 return <del>{props.children}</del>;
             case 'code':
                 return <pre><code>{props.children}</code></pre>;
-            case 'superscript':
-                return <sup>{props.children}</sup>;
-            case 'subscript':
-                return <sub>{props.children}</sub>;
         }
     };
 
