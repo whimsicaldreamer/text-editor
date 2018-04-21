@@ -3,11 +3,15 @@ import React, { Component, Children, PropTypes } from 'react';
 class Toolbar extends Component{
     constructor(props) {
         super(props);
+        this.state = {
+          value: this.props.value
+        }
     }
-
-    state = {
-        value: this.props.value
-    };
+    componentWillReceiveProps(nextProp) {
+      if(nextProp.value !== this.props.value) {
+        this.setState({value: nextProp.value})
+      }
+    }
 
     render() {
         return (
