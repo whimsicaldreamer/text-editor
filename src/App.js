@@ -41,7 +41,6 @@ class App extends Component {
     // On change, update the app's React state with the new editor value.
     onChange = ({ value }) => {
         this.setState({ value });
-        console.log(value.activeMarks.some(mark => mark.type)); // <- Check how on click it turns to true and then back to false
     };
 
     render() {
