@@ -1,4 +1,4 @@
-import React, { Component, Children, PropTypes } from 'react';
+import React, { Component } from 'react';
 
 class Toolbar extends Component{
     constructor(props) {
@@ -9,9 +9,14 @@ class Toolbar extends Component{
     }
     componentWillReceiveProps(nextProp) {
       if(nextProp.value !== this.props.value) {
-        this.setState({value: nextProp.value})
+        this.setState({value: nextProp.value});
       }
     }
+
+    hasMark = type => {
+        const { value } = this.state;
+        return value.activeMarks.some(mark => mark.type === type);
+    };
 
     render() {
         return (
@@ -30,11 +35,14 @@ class Toolbar extends Component{
             this.props.onChange(change);
         };
 
+        const isActive = this.hasMark(type);
+
         return (
-            <span className={icon} onMouseDown={onMouseDown}>
+            <span className={icon} onMouseDown={onMouseDown} data-active={isActive}>
             </span>
         )
-    }
+    };
+
 }
 
 export default Toolbar;

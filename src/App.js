@@ -41,6 +41,7 @@ class App extends Component {
     // On change, update the app's React state with the new editor value.
     onChange = ({ value }) => {
         this.setState({ value });
+        console.log(value.activeMarks.some(mark => mark.type)); // <- Check how on click it turns to true and then back to false
     };
 
     render() {
@@ -60,12 +61,27 @@ class App extends Component {
                         plugins={plugins}
                         value={this.state.value}
                         onChange={this.onChange}
+                        renderMark={this.renderMark}
                         autoFocus
                         autoCorrect
                     />
                 </div>
             </div>
         );
+    }
+
+    renderMark = props => {
+        const { children, mark } = props;
+        switch (mark.type) {
+            case 'bold':
+                return <strong>{children}</strong>;
+            case 'code':
+                return <code>{children}</code>;
+            case 'italic':
+                return <em>{children}</em>;
+            case 'underlined':
+                return <u>{children}</u>;
+        }
     }
 }
 
