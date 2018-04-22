@@ -28,7 +28,7 @@ const initialValue = Value.fromJSON({
     },
 });
 
-const plugins = [SoftBreak];
+const plugins = [SoftBreak()];
 
 
 class App extends Component {
