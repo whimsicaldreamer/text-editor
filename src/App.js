@@ -32,7 +32,8 @@ const initialValue = Value.fromJSON({
 
 const bold = Bold();
 const italic = Italic();
-const plugins = [SoftBreak(), bold, Italic];
+
+const plugins = [SoftBreak(), bold, italic];
 
 
 class App extends Component {
@@ -70,20 +71,6 @@ class App extends Component {
                 </div>
             </div>
         );
-    }
-
-    renderMark = props => {
-        const { children, mark } = props;
-        switch (mark.type) {
-            case 'bold':
-                return <strong>{children}</strong>;
-            case 'code':
-                return <code>{children}</code>;
-            case 'italic':
-                return <em>{children}</em>;
-            case 'underlined':
-                return <u>{children}</u>;
-        }
     }
 }
 
