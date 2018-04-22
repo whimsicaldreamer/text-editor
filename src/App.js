@@ -8,6 +8,7 @@ import Bold from './plugins/bold';
 import Italic from './plugins/italic';
 import Underline from './plugins/underline';
 import Strikethrough from './plugins/strikethrough';
+import Code from './plugins/code';
 
 import './App.css';
 
@@ -36,8 +37,9 @@ const bold = Bold();
 const italic = Italic();
 const underline = Underline();
 const strikethrough = Strikethrough();
+const code = Code();
 
-const plugins = [SoftBreak(), bold, italic, underline, strikethrough];
+const plugins = [SoftBreak(), bold, italic, underline, strikethrough, code];
 
 
 class App extends Component {
