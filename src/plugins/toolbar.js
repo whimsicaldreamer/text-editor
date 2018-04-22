@@ -23,6 +23,8 @@ class Toolbar extends Component{
             <div className="toolbar">
                 {this.renderMarkButton('bold', 'btn fas fa-bold')}
                 {this.renderMarkButton('italic', 'btn fas fa-italic')}
+                {this.renderMarkButton('underline', 'btn fas fa-underline')}
+                {this.renderMarkButton('strikethrough', 'btn fas fa-strikethrough')}
             </div>
         )
     }

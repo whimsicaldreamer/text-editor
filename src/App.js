@@ -6,6 +6,8 @@ import SoftBreak from 'slate-soft-break';
 import Toolbar from './plugins/toolbar';
 import Bold from './plugins/bold';
 import Italic from './plugins/italic';
+import Underline from './plugins/underline';
+import Strikethrough from './plugins/strikethrough';
 
 import './App.css';
 
@@ -32,8 +34,10 @@ const initialValue = Value.fromJSON({
 
 const bold = Bold();
 const italic = Italic();
+const underline = Underline();
+const strikethrough = Strikethrough();
 
-const plugins = [SoftBreak(), bold, italic];
+const plugins = [SoftBreak(), bold, italic, underline, strikethrough];
 
 
 class App extends Component {
