@@ -4,6 +4,8 @@ import { Value } from 'slate';
 import SoftBreak from 'slate-soft-break';
 
 import Toolbar from './plugins/toolbar';
+import Bold from './plugins/bold';
+import Italic from './plugins/italic';
 
 import './App.css';
 
@@ -28,7 +30,9 @@ const initialValue = Value.fromJSON({
     },
 });
 
-const plugins = [SoftBreak()];
+const bold = Bold();
+const italic = Italic();
+const plugins = [SoftBreak(), bold, Italic];
 
 
 class App extends Component {
@@ -60,7 +64,6 @@ class App extends Component {
                         plugins={plugins}
                         value={this.state.value}
                         onChange={this.onChange}
-                        renderMark={this.renderMark}
                         autoFocus
                         autoCorrect
                     />
